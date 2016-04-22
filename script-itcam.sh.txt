@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+# Script para fazer as chamadas nos scripts do ITCAM
+#
+update() {
+cd /home/tvt02223 ; sh -x ./ismconfig_method_http_v2.sh update
+}
+
+
+book() {
+cd /home/tvt02223 ; ./booking_itcam.sh dns 2>&1> /dev/null
+cd /home/tvt02223 ; ./booking_itcam.sh icmp 2>&1> /dev/null
+cd /home/tvt02223 ; ./booking_itcam.sh http 2>&1> /dev/null
+cd /home/tvt02223 ; ./booking_itcam.sh https 2>&1> /dev/null
+cd /home/tvt02223 ; ./booking_itcam.sh smtp 2>&1> /dev/null
+}
+
+
+
+case $1 in
+        update) update;
+        ;;
+        book) book;
+        ;;
+        *) echo "opcao errada"
+        ;;
+esac
+
